@@ -6,7 +6,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "../firebase";
 import { serverTimestamp, setDoc, doc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import {toast} from 'react-toastify'
+import {toast} from 'react-toastify';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({

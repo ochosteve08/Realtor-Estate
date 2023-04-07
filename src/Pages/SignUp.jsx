@@ -2,22 +2,56 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import Oauth from "../Components/Oauth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth, db } from "../firebase";
+import { serverTimestamp, setDoc, doc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+import {toast} from 'react-toastify'
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
-
   });
   const [showPassword, setShowPassword] = useState(false);
-  let {name, email, password } = formData;
+  let { name, email, password } = formData;
   const onChange = (event) => {
     setFormData((prevState) => ({
       ...prevState,
       [event.target.id]: event.target.value,
-   
     }));
+  };
+  const navigate = useNavigate();
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      updateProfile(auth.currentUser, {
+        displayName: name,
+        // photoURL: "https://example.com/jane-q-user/profile.jpg",
+      });
+      const user = userCredential.user;
+
+      const formDataCopy = { ...formData };
+      delete formDataCopy.password;
+      formDataCopy.timestamp = serverTimestamp();
+
+      await setDoc(doc(db, "users/" + user.uid), formDataCopy);
+      //   const docRef = await addDoc(collection(db, "users"), formDataCopy);
+      //   console.log("Document written with ID: ", docRef.id);
+      console.log(user);
+      toast.success('Signup successful' )
+      navigate("/");
+    } catch (e) {
+      console.log(e);
+      toast.error('Oops!!! something went wrong with the registration process')
+    }
   };
 
   return (
@@ -32,7 +66,7 @@ const SignUp = () => {
           />
         </div>
         <div className="w-full md:w-2/3 lg:w-2/5 lg:ml-20">
-          <form>
+          <form onSubmit={onSubmit}>
             <input
               className="w-full mb-6 px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out"
               type="text"

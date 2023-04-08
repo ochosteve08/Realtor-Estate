@@ -1,10 +1,30 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Oauth from "../Components/Oauth";
+import { auth } from "../firebase";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { sendPasswordResetEmail } from "firebase/auth";
 
 const forgotPassword = () => {
-  const [email, setEmail] = useState('');
- 
+  const [email, setEmail] = useState("");
+
+  const navigate = useNavigate();
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const user = await sendPasswordResetEmail(auth, email);
+
+      console.log(user);
+      toast.success("Email was sent successfully");
+      if (user) {
+        navigate("/");
+      }
+    } catch (error) {
+      toast.error("could not reset password", error);
+    }
+  };
 
   return (
     <section>
@@ -18,16 +38,16 @@ const forgotPassword = () => {
           />
         </div>
         <div className="w-full md:w-2/3 lg:w-2/5 lg:ml-20">
-          <form>
+          <form onSubmit={onSubmit}>
             <input
               className="w-full mb-6 px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out"
               type="email"
               id="email"
               value={email}
-              onChange={(event)=> setEmail(event.target.value)}
+              onChange={(event) => setEmail(event.target.value)}
               placeholder="Email address"
             />
-            
+
             <div className="flex justify-between  text-sm sm:text-lg mb-6">
               <p>
                 Don't have an account?
@@ -43,7 +63,7 @@ const forgotPassword = () => {
                   to="/sign-in"
                   className="text-blue-600 hover:text-blue-800 transition duration-200 ease-in-out"
                 >
-                SignIn
+                  SignIn
                 </Link>
               </p>
             </div>

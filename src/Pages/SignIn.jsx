@@ -1,7 +1,11 @@
 import React, { useState } from "react";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import Oauth from "../Components/Oauth";
+import { auth } from "../firebase";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({
@@ -10,12 +14,34 @@ const SignIn = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   let { email, password } = formData;
+
   const onChange = (event) => {
     setFormData((prevState) => ({
       ...prevState,
       [event.target.id]: event.target.value,
- 
     }));
+  };
+
+  const navigate = useNavigate();
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    try {
+  
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      console.log(user);
+      toast.success("successful");
+      if (user) {
+        navigate("/");
+      }
+    } catch (error) {
+      toast.error("Bad user credentials");
+    }
   };
 
   return (
@@ -30,7 +56,7 @@ const SignIn = () => {
           />
         </div>
         <div className="w-full md:w-2/3 lg:w-2/5 lg:ml-20">
-          <form>
+          <form onSubmit={onSubmit}>
             <input
               className="w-full mb-6 px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out"
               type="email"
@@ -88,7 +114,7 @@ const SignIn = () => {
             <div className="flex items-center  my-4 before:border-t-3 before:flex-1 before:border-gray-300 after:border-t-3 after:flex-1 after:border-gray-300">
               <p className="text-center font-semibold mx-4">OR</p>
             </div>
-            <Oauth/>
+            <Oauth />
           </form>
         </div>
       </div>

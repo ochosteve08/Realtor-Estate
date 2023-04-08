@@ -16,7 +16,7 @@ const forgotPassword = () => {
     try {
       const user = await sendPasswordResetEmail(auth, email);
 
-      console.log(user);
+    
       toast.success("Email was sent successfully");
       if (user) {
         navigate("/");

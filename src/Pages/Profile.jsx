@@ -1,10 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth, db } from "../firebase";
 import { toast } from "react-toastify";
 import { doc, updateDoc } from "firebase/firestore";
 import { updateProfile } from "firebase/auth";
+import { FcHome } from "react-icons/fc";
 
 const Profile = () => {
   const [changeDetail, setChangeDetail] = useState(false);
@@ -56,10 +57,12 @@ const Profile = () => {
   return (
     <section className="max-w-6xl">
       <h1 className=" text-3xl text-center font-bold mt-6">My Profile</h1>
-     {photo && <div className="flex justify-center mt-6">
-        <img className="rounded-full" src={photo} alt="profile-pic" />
-      </div>}
-      <div className=" w-full xs:w-3/4 md:w-1/2  mx-auto mt-6 px-3 ">
+      {photo && (
+        <div className="flex justify-center mt-6">
+          <img className="rounded-full" src={photo} alt="profile-pic" />
+        </div>
+      )}
+      <div className=" w-full xs:w-3/4 md:w-1/2  mx-auto my-6 px-3 ">
         <form>
           <input
             className={`w-full mb-6 px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out ${
@@ -99,6 +102,14 @@ const Profile = () => {
             </p>
           </div>
         </form>
+        <Link to="/create-listing">
+          <button
+            type="submit"
+            className="flex bg-blue-600 w-full justify-center items-center px-6 py-3 rounded-md gap-x-4 uppercase text-white hover:bg-blue-700 transition duration-200 ease-in-out  cursor-pointer shadow-md hover:shadow-large active:bg-blue-800"
+          >
+            <FcHome className="text-3xl  bg-red-300 rounded-full p-1 border-2" /> Sell or Rent your Home
+          </button>
+        </Link>
       </div>
     </section>
   );

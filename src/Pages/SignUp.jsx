@@ -32,9 +32,8 @@ const SignUp = () => {
         password
       );
 
-      updateProfile(auth.currentUser, {
-        displayName: name,
-        // photoURL: "https://example.com/jane-q-user/profile.jpg",
+     updateProfile(auth.currentUser, {
+        displayName: name
       });
       const user = userCredential.user;
 
@@ -43,13 +42,11 @@ const SignUp = () => {
       formDataCopy.timestamp = serverTimestamp();
 
       await setDoc(doc(db, "users/" + user.uid), formDataCopy);
-      //   const docRef = await addDoc(collection(db, "users"), formDataCopy);
-      //   console.log("Document written with ID: ", docRef.id);
-      console.log(user);
+  
       toast.success('Signup successful' )
       navigate("/");
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+    
       toast.error('Oops!!! something went wrong with the registration process')
     }
   };

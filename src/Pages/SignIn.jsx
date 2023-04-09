@@ -34,7 +34,7 @@ const SignIn = () => {
         password
       );
       const user = userCredential.user;
-      console.log(user);
+ 
       toast.success("successful");
       if (user) {
         navigate("/");

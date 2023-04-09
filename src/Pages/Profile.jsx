@@ -56,9 +56,9 @@ const Profile = () => {
   return (
     <section className="max-w-6xl">
       <h1 className=" text-3xl text-center font-bold mt-6">My Profile</h1>
-      <div className="flex justify-center mt-6">
+     {photo && <div className="flex justify-center mt-6">
         <img className="rounded-full" src={photo} alt="profile-pic" />
-      </div>
+      </div>}
       <div className=" w-full xs:w-3/4 md:w-1/2  mx-auto mt-6 px-3 ">
         <form>
           <input

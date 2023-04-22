@@ -38,7 +38,7 @@ const Header = () => {
         <div className="">
           <ul className=" flex space-x-3 md:space-x-12 pr-4">
             <li
-              className={`py-3 text-sm md:text-xl  text-black font-semibold hover:cursor-pointer border-b-3  ${
+              className={`py-3 text-sm md:text-xl  text-black font-semibold hover:cursor-pointer border-b-[5px]  ${
                 pathMatchRoute("/") && "text-black border-b-red-500"
               }`}
               onClick={() => navigate("/")}

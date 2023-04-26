@@ -38,25 +38,25 @@ const Header = () => {
         <div className="">
           <ul className=" flex space-x-3 md:space-x-12 pr-4">
             <li
-              className={`py-3 text-sm md:text-xl  text-black font-semibold hover:cursor-pointer border-b-[5px]  ${
-                pathMatchRoute("/") && "text-black border-b-red-500"
+              className={`py-3 text-sm md:text-xl  text-gray-500 font-semibold hover:cursor-pointer border-b-[5px]  ${
+                pathMatchRoute("/") && "!text-black border-b-red-500"
               }`}
               onClick={() => navigate("/")}
             >
               Home
             </li>
             <li
-              className={`py-3 text-sm md:text-xl  text-black font-semibold  hover:cursor-pointer border-b-3 border-transparent ${
-                pathMatchRoute("/offers") && "text-black border-b-red-500"
+              className={`py-3 text-sm md:text-xl  text-gray-500 font-semibold  hover:cursor-pointer border-b-3 border-transparent ${
+                pathMatchRoute("/offers") && "!text-black border-b-red-500"
               }`}
               onClick={() => navigate("/offers")}
             >
               Offers
             </li>
             <li
-              className={`py-3 text-sm md:text-xl  text-black font-semibold  hover:cursor-pointer border-b-3 border-transparent ${
+              className={`py-3 text-sm md:text-xl  text-gray-500 font-semibold  hover:cursor-pointer border-b-3 border-transparent ${
                 (pathMatchRoute("/sign-in") || pathMatchRoute("/profile")) &&
-                "border-b-red-500 "
+                "!text-black border-b-red-500 "
               }`}
               onClick={() => navigate("/profile")}
             >

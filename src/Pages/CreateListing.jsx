@@ -180,12 +180,10 @@ const CreateListing = () => {
     delete formDataCopy.longitude;
 
     const docRef = await addDoc(collection(db, "listings"), formDataCopy);
-    console.log(docRef);
+    console.log(docRef.id);
     setLoading(false);
     toast.success("listing added successfully");
-     navigate(`/category/${formDataCopy.type}/${docRef.id}`);
-
-    
+    navigate(`/category/${formDataCopy.type}/${docRef.id}`);
   };
 
   if (loading) {

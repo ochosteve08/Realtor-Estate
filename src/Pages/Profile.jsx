@@ -80,7 +80,7 @@ const Profile = () => {
      querySnap.forEach((doc) => {
         return listing.push({ id: doc.id, data: doc.data() });
       });
-      console.log(listing[0].data);
+     
       setLoading(false);
       setListings(listing);
     };
@@ -151,8 +151,8 @@ const Profile = () => {
       <div className="max-w-6xl mx-auto px-3 mt-10">
         {!loading && listings.length > 0 && (
           <>
-            <h2 className="text-2xl fw-semibold text-center">My Listings</h2>
-            <ul className="flex justify-center ">
+            <h2 className="text-2xl font-semibold text-center mb-6">My Listings</h2>
+            <ul className="grid  sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4">
               {listings.map((listing) => (
                 <ListingsItem
                   key={listing.id}

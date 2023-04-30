@@ -5,6 +5,7 @@ import { auth, db } from "../firebase";
 import { toast } from "react-toastify";
 import {
   collection,
+  deleteDoc,
   doc,
   getDocs,
   orderBy,
@@ -18,15 +19,15 @@ import { useEffect } from "react";
 import ListingsItem from "../Components/ListingsItem";
 
 const Profile = () => {
+ 
   const [changeDetail, setChangeDetail] = useState(false);
   const [listings, setListings] = useState(null);
-   const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
     name: auth.currentUser.displayName,
     email: auth.currentUser.email,
     photo: auth.currentUser.photoURL,
   });
- 
 
   let { name, email, photo } = formData;
 
@@ -47,7 +48,6 @@ const Profile = () => {
   const onSubmit = async () => {
     try {
       if (auth.currentUser.displayName !== name) {
-       
         //update display name in firebase auth
         await updateProfile(auth.currentUser, {
           displayName: name,
@@ -75,22 +75,41 @@ const Profile = () => {
         orderBy("timestamp", "desc")
       );
       const querySnap = await getDocs(q);
-    
-      let  listing = [];
-     querySnap.forEach((doc) => {
+
+      let listing = [];
+      querySnap.forEach((doc) => {
         return listing.push({ id: doc.id, data: doc.data() });
       });
-     
+
       setLoading(false);
       setListings(listing);
     };
 
     fetchUserListing();
-  },[auth.currentUser.uid]);
+  }, [auth.currentUser.uid]);
+
+  const onDelete = async (listingId) => {
+
+    if (window.confirm(" Are you sure you want to delete?")){
+       await deleteDoc(doc(db, "listings", listingId));
+       const updateListing = listings.filter(
+         (listing) => listing.id !== listingId
+       );
+
+       setListings(updateListing);
+       toast.success("listing deleted successfully");
+
+    }
+     
+  };
+  const onEdit = (listingId) => {
+    navigate(`/edit-listing/${listingId}`);
+  };
 
   return (
     <>
-      <section className="max-w-6xl mx-auto">
+   
+      <section className=" max-w-6xl mx-auto">
         <h1 className=" text-3xl text-center font-bold mt-6">My Profile</h1>
         {photo && (
           <div className="flex justify-center mt-6">
@@ -148,16 +167,22 @@ const Profile = () => {
           </Link>
         </div>
       </section>
-      <div className="max-w-6xl mx-auto px-3 mt-10">
+      <div className=" max-w-6xl mx-auto px-3 mt-10">
         {!loading && listings.length > 0 && (
           <>
-            <h2 className="text-2xl font-semibold text-center mb-6">My Listings</h2>
+            <h2 className="text-2xl font-semibold text-center mb-6">
+              My Listings
+            </h2>
+
             <ul className="grid  sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4">
               {listings.map((listing) => (
                 <ListingsItem
                   key={listing.id}
                   id={listing.id}
                   listing={listing.data}
+                  onDelete={() => onDelete(listing.id)}
+                  onEdit={() => onEdit(listing.id)}
+                 
                 />
               ))}
             </ul>

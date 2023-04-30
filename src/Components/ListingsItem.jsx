@@ -2,8 +2,10 @@ import React from "react";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import { MdLocationOn } from "react-icons/md";
+import {FaTrash} from "react-icons/fa";
+import {MdEdit} from "react-icons/md"
 
-const ListingsItem = ({ id, listing }) => {
+const ListingsItem = ({ id, listing, onEdit, onDelete }) => {
   const date = new Date(listing.timestamp.toDate());
  
   return (
@@ -60,6 +62,20 @@ const ListingsItem = ({ id, listing }) => {
           </div>
         </div>
       </Link>
+      {onEdit && (
+        <MdEdit
+          className="absolute text-black bottom-2 right-7 h-4 cursor-pointer"
+          onClick={() => onEdit(listing.id)}
+        />
+      )}
+
+      {onDelete && (
+        <FaTrash
+          className="absolute text-red-500 bottom-2 right-2 h-4 cursor-pointer"
+          onClick={() => onDelete(listing.id)}
+         
+        />
+      )}
     </li>
   );
 };

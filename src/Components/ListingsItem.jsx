@@ -27,7 +27,9 @@ const ListingsItem = ({ id, listing, onEdit, onDelete }) => {
               {listing.address}
             </p>
           </div>
-          <p className="absolute left-2 top-[50%]  bg-[#d90429] px-2 py-1 rounded-md text-white text-xs uppercase font-semibold">
+          <p
+            className={`absolute left-2 top-[50%]  px-2 py-1 rounded-md text-white text-xs uppercase font-semibold  ${listing.type === "rent"? " bg-[#d90429]": " bg-green-600"}`}
+          >
             {listing.type}
           </p>
           <p className="font-semibold  text-xl">{listing.name}</p>
@@ -73,7 +75,6 @@ const ListingsItem = ({ id, listing, onEdit, onDelete }) => {
         <FaTrash
           className="absolute text-red-500 bottom-2 right-2 h-4 cursor-pointer"
           onClick={() => onDelete(listing.id)}
-         
         />
       )}
     </li>

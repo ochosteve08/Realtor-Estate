@@ -170,7 +170,7 @@ const Profile = () => {
       <div className=" max-w-6xl mx-auto px-3 mt-10">
         {!loading && listings.length > 0 && (
           <>
-            <h2 className="text-2xl font-semibold text-center mb-6">
+            <h2 className="text-2xl uppercase font-semibold text-center mb-6">
               My Listings
             </h2>
 

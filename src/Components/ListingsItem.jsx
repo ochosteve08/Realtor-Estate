@@ -2,12 +2,13 @@ import React from "react";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import { MdLocationOn } from "react-icons/md";
-import {FaTrash} from "react-icons/fa";
-import {MdEdit} from "react-icons/md"
+import { FaTrash } from "react-icons/fa";
+import { MdEdit } from "react-icons/md";
+import { MdPhotoCamera } from "react-icons/md";
 
 const ListingsItem = ({ id, listing, onEdit, onDelete }) => {
   const date = new Date(listing.timestamp.toDate());
- 
+
   return (
     <li className="bg-white relative flex flex-col justify-between items-center shadow-md hover:shadow-lg rounded-lg my-6 overflow-hidden transition-shadow duration-150  mx-4">
       <Link className="contents" to={`/category/${listing.type}/${id}`}>
@@ -17,6 +18,7 @@ const ListingsItem = ({ id, listing, onEdit, onDelete }) => {
           loading="lazy"
           alt=""
         />
+
         <div className="absolute left-2 top-2  bg-[#0077b6] px-2 py-1 rounded-md text-white text-xs uppercase font-semibold">
           {moment(date).fromNow()}
         </div>
@@ -28,10 +30,16 @@ const ListingsItem = ({ id, listing, onEdit, onDelete }) => {
             </p>
           </div>
           <p
-            className={`absolute left-2 top-[50%]  px-2 py-1 rounded-md text-white text-xs uppercase font-semibold  ${listing.type === "rent"? " bg-[#d90429]": " bg-green-600"}`}
+            className={`absolute left-2 top-[48%]  px-2 py-1 rounded-md text-white text-xs uppercase font-semibold  ${
+              listing.type === "rent" ? " bg-[#d90429]" : " bg-green-600"
+            }`}
           >
             {listing.type}
           </p>
+          <div className="flex absolute bg-white right-2 top-[48%] items-center rounded-sm px-1">
+            <MdPhotoCamera className="" />
+            <p className="text-sm">{listing.imageUrls.length}</p>
+          </div>
           <p className="font-semibold  text-xl">{listing.name}</p>
           <div className="flex space-x-3 text-[#0096c7] my-2 font-semibold">
             <p>
@@ -41,7 +49,7 @@ const ListingsItem = ({ id, listing, onEdit, onDelete }) => {
             </p>
             {listing.offer && (
               <p>
-                <span className="font-semibold text-black bg-green-400 px-2 py-[2px] rounded-sm">
+                <span className="font-semibold text-black bg-green-400 px-2 py-[2px] rounded-md">
                   discount:
                 </span>
                 $

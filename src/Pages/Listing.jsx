@@ -99,7 +99,7 @@ const Listing = () => {
         ))}
       </div>
       <div className=" bg-white md:max-w-6xl   mx-auto flex flex-col md:flex-row p-4 shadow-lg space-y-5 md:space-x-5 md:space-y-0 ">
-        <div className="h-[200px] lg:h-[400px] w-full ">
+        <div className="h-auto lg:h-[400px] w-full ">
           <h3 className=" text-2xl font-bold  text-blue-900 ">
             {listing?.name} - $
             {listing?.regular.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -111,13 +111,13 @@ const Listing = () => {
               {listing?.address}
             </p>
           </div>
-          <div className="flex space-x-6 text-white items-center font-semibold">
-            <p className="bg-red-500 px-16 py-1 rounded-md shadow-md">
+          <div className="flex space-x-4 justify-start text-white items-center font-semibold md:w-[75%]">
+            <p className="bg-red-500 w-full max-w-[200px] text-center  p-1 rounded-md shadow-md">
               {listing?.type === "rent" ? "For Rent" : "For Sale"}
             </p>
             {listing?.offer && (
-              <p className="bg-green-600  px-10 py-1 rounded-md shadow-md">
-                ${listing?.discount} discount
+              <p className="bg-green-600 w-full max-w-[200px] text-center p-1 rounded-md shadow-md">
+                discount: ${listing?.discount}
               </p>
             )}
           </div>
@@ -126,15 +126,15 @@ const Listing = () => {
             {listing?.description}
           </p>
 
-          <div className="flex items-center space-x-6 font-bold  whitespace-nowrap ">
-            <div className="flex items-center space-x-2 ">
+          <div className="flex lg:flex-row  items-center gap-2 font-bold flex-wrap md:gap-4  ">
+            <div className="flex flex-1 items-center space-x-2  whitespace-nowrap">
               <FaBed />
               <p>
                 {listing?.bedroom > 1 ? `${listing?.bedroom} Beds` : "1 Bed"}
               </p>
             </div>
 
-            <div className="flex items-center space-x-2">
+            <div className="flex flex-1 items-center space-x-2  whitespace-nowrap">
               <FaBath />
               <p>
                 {listing?.bathroom > 1
@@ -143,17 +143,17 @@ const Listing = () => {
               </p>
             </div>
 
-            <div className="flex items-center space-x-2">
+            <div className="flex flex-1 items-center space-x-2  whitespace-nowrap">
               <FaParking />
               <p>{listing?.parking ? "Parking Spot" : "No Parking"}</p>
             </div>
-            <div className="flex items-center space-x-2">
-              <FaChair/>
+            <div className="flex flex-1 items-center space-x-2  whitespace-nowrap">
+              <FaChair />
               <p>{listing?.furnished ? "Furnished" : "Not Furnished"} </p>
             </div>
           </div>
         </div>
-        <div className="bg-blue-300 h-[200px] lg:h-[400px] w-full z-50 overflow-x-hidden "></div>
+        <div className="bg-blue-300 h-[200px] lg:h-[400px] w-full  overflow-x-hidden "></div>
       </div>
     </main>
   );

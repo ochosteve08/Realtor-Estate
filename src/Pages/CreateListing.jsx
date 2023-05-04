@@ -51,6 +51,23 @@ const CreateListing = () => {
     images,
   } = formData;
 
+  const onChangeLocation = async (event) => {
+    
+    const { value } = event.target;
+    const floatValue = parseFloat(value);
+     let formattedValue = "";
+      if (!isNaN(floatValue)) {
+        formattedValue = floatValue.toFixed(4); // Format the value to 4 decimal places
+      }
+
+    if (!event.target.files) {
+      setFormData((prevState) => ({
+        ...prevState,
+        [event.target.id]: formattedValue,
+      }));
+    }
+  };
+
   const onChange = async (event) => {
     let boolean = null;
 
@@ -366,10 +383,11 @@ const CreateListing = () => {
                   Latitude
                 </label>
                 <input
-                  type="number"
+                  type="text"
                   id="latitude"
                   value={latitude}
-                  onChange={onChange}
+                  onChange={onChangeLocation}
+                  placeholder="51.5074"
                   min={-90}
                   max={50}
                   required
@@ -384,10 +402,11 @@ const CreateListing = () => {
                   Longitude
                 </label>
                 <input
-                  type="number"
+                  type="text"
                   id="longitude"
                   value={longitude}
-                  onChange={onChange}
+                  onChange={onChangeLocation}
+                  placeholder="-0.1278"
                   min={-180}
                   max={180}
                   required

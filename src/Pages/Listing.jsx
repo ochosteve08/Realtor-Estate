@@ -56,7 +56,6 @@ const Listing = () => {
 
   // Create a LatLng object from the float values
   const position = [latitude, longitude];
-  
 
   return (
     <main>
@@ -111,7 +110,7 @@ const Listing = () => {
               />
             ))}
           </div>
-          <div className=" bg-white md:max-w-6xl   mx-auto flex flex-col md:flex-row p-4 shadow-lg space-y-5 md:space-x-5 md:space-y-0 ">
+          <div className=" bg-white md:max-w-6xl  m-4 lg:mx-auto flex flex-col md:flex-row p-4 shadow-lg space-y-5 md:space-x-5 md:space-y-0 rounded-lg ">
             <div className="h-auto  w-full ">
               <h3 className=" text-2xl font-bold  text-blue-900 ">
                 {listing?.name} - $
@@ -196,12 +195,8 @@ const Listing = () => {
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                <Marker
-                  position={position}
-                >
-                  <Popup>
-                    A pretty CSS3 popup. <br /> Easily customizable.
-                  </Popup>
+                <Marker position={position}>
+                  <Popup>{listing.address}</Popup>
                 </Marker>
               </MapContainer>
             </div>

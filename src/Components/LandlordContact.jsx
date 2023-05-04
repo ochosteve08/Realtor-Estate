@@ -5,27 +5,21 @@ import { auth, db } from "../firebase";
 import { toast } from "react-toastify";
 
 const LandlordContact = ({ listing }) => {
-    const [landlordContact, setLandlordContact] = useState(null);
-    const [message, setMessage] =useState("");
+  const [landlordContact, setLandlordContact] = useState(null);
+  const [message, setMessage] = useState("");
 
-    console.log(message)
-   
   useEffect(() => {
     const fetchDetails = async () => {
       const docRef = doc(db, "users", listing.userRef);
       const docSnap = await getDoc(docRef);
-       if(docSnap.exists()){
-         setLandlordContact(docSnap.data());
-
-      }
-     
-      else{
-        toast.error("couldn't find Landlord contact")
+      if (docSnap.exists()) {
+        setLandlordContact(docSnap.data());
+      } else {
+        toast.error("couldn't find Landlord contact");
       }
     };
     fetchDetails();
   }, [listing.useRef]);
-
 
   return (
     <>
@@ -47,9 +41,11 @@ const LandlordContact = ({ listing }) => {
           {message && (
             <a
               href={`mailto:${landlordContact.email}?Subject=${listing.name}&body=${message}`}
-             
             >
-              <button type="button" className="bg-blue-600 w-full text-center py-2 px-6  rounded shadow-md hover:shadow-lg focus:shadow-lg hover:bg-blue-700 focus:bg-blue-700 text-white uppercase font-medium transition duration-150 ease-in-out">
+              <button
+                type="button"
+                className="bg-blue-600 w-full text-center py-2 px-6  rounded shadow-md hover:shadow-lg focus:shadow-lg hover:bg-blue-700 focus:bg-blue-700 text-white uppercase font-medium transition duration-150 ease-in-out"
+              >
                 send message
               </button>
             </a>

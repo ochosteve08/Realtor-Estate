@@ -56,8 +56,8 @@ const Listing = () => {
 
   // Create a LatLng object from the float values
   const position = [latitude, longitude];
-
-  return (
+  
+  return (   
     <main>
       {listing && (
         <>

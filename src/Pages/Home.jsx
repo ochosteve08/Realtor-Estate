@@ -1,8 +1,11 @@
 import React from "react";
+import Slider from "../Components/Slider";
 
 const Home = () => {
   return (
-    <div className='text-center'>Home</div>
-  )
+    <main>
+      <Slider />
+    </main>
+  );
 };
 export default Home;

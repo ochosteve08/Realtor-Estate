@@ -5,21 +5,58 @@ import { MdLocationOn } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
 import { MdPhotoCamera } from "react-icons/md";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, {
+  EffectFade,
+  Autoplay,
+  Navigation,
+  Pagination,
+} from "swiper";
+import "swiper/css/bundle";
 
 const ListingsItem = ({ id, listing, onEdit, onDelete }) => {
   const date = new Date(listing.timestamp.toDate());
+  SwiperCore.use([Autoplay, Navigation, Pagination]);
+  console.log(Array.isArray(listing.imageUrls));
 
   return (
-    <li className="bg-white relative flex flex-col justify-between items-center shadow-md hover:shadow-lg rounded-lg my-6 overflow-hidden transition-shadow duration-150  mx-4">
-      <Link className="contents" to={`/category/${listing.type}/${id}`}>
-        <img
+    <li className="bg-white relative flex w-auto flex-col justify-between items-center shadow-md hover:shadow-lg rounded-lg my-6 overflow-hidden transition-shadow duration-150  mx-4">
+      {/* <img
           className="h-[170px] w-full object-cover hover:scale-105 transition-scale duration-150 ease-in-out"
           src={listing.imageUrls[0]}
           loading="lazy"
           alt=""
-        />
-
-        <div className="absolute left-2 top-2  bg-[#0077b6] px-2 py-1 rounded-md text-white text-xs uppercase font-semibold">
+        /> */}
+      <Swiper
+        slidesPerView={1}
+        // navigation
+        onSwiper={(swiper) => console.log(swiper)}
+        onSlideChange={() => console.log("slide change")}
+        // pagination={{ type: "progressbar" }}
+        // effect="fade"
+        // modules={EffectFade}
+        autoplay={{ delay: 3000 }}
+      >
+        {listing.imageUrls.map((url) => (
+          <SwiperSlide>
+            {/* <div
+                className="relative w-full overflow-hidden  h-[170px] "
+                style={{
+                  background: `url(${url[0]}) center no-repeat`,
+                  backgroundSize: "cover",
+                }}
+              ></div>  */}
+            <img
+              className=" overflow-hidden w-[550px] md:w-[600px]  h-[170px] object-cover  hover:scale-105 transition-scale duration-150 ease-in-out "
+              src={url}
+              alt="pics"
+              loading="lazy"
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+      <Link className="contents" to={`/category/${listing.type}/${id}`}>
+        <div className="absolute left-2 top-2 z-40  bg-[#0077b6] px-2 py-1 rounded-md text-white text-xs uppercase font-semibold">
           {moment(date).fromNow()}
         </div>
         <div className="w-full p-[10px]">
@@ -30,13 +67,13 @@ const ListingsItem = ({ id, listing, onEdit, onDelete }) => {
             </p>
           </div>
           <p
-            className={`absolute left-2 top-[48%]  px-2 py-1 rounded-md text-white text-xs uppercase font-semibold  ${
+            className={`absolute left-2 z-40 top-[48%]  px-2 py-1 rounded-md text-white text-xs uppercase font-semibold  ${
               listing.type === "rent" ? " bg-[#d90429]" : " bg-green-600"
             }`}
           >
             {listing.type}
           </p>
-          <div className="flex absolute bg-white right-2 top-[48%] items-center rounded-sm px-1">
+          <div className="flex absolute z-40 bg-white right-2 top-[48%] items-center rounded-sm px-1">
             <MdPhotoCamera className="" />
             <p className="text-sm">{listing.imageUrls.length}</p>
           </div>

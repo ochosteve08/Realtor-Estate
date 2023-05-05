@@ -19,7 +19,6 @@ import { useEffect } from "react";
 import ListingsItem from "../Components/ListingsItem";
 
 const Profile = () => {
- 
   const [changeDetail, setChangeDetail] = useState(false);
   const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -75,6 +74,7 @@ const Profile = () => {
         orderBy("timestamp", "desc")
       );
       const querySnap = await getDocs(q);
+      // console.log(querySnap);
 
       let listing = [];
       querySnap.forEach((doc) => {
@@ -88,19 +88,18 @@ const Profile = () => {
     fetchUserListing();
   }, [auth.currentUser.uid]);
 
+  console.log(listings)
+
   const onDelete = async (listingId) => {
+    if (window.confirm(" Are you sure you want to delete?")) {
+      await deleteDoc(doc(db, "listings", listingId));
+      const updateListing = listings.filter(
+        (listing) => listing.id !== listingId
+      );
 
-    if (window.confirm(" Are you sure you want to delete?")){
-       await deleteDoc(doc(db, "listings", listingId));
-       const updateListing = listings.filter(
-         (listing) => listing.id !== listingId
-       );
-
-       setListings(updateListing);
-       toast.success("listing deleted successfully");
-
+      setListings(updateListing);
+      toast.success("listing deleted successfully");
     }
-     
   };
   const onEdit = (listingId) => {
     navigate(`/edit-listing/${listingId}`);
@@ -108,7 +107,6 @@ const Profile = () => {
 
   return (
     <>
-   
       <section className=" max-w-6xl mx-auto">
         <h1 className=" text-3xl text-center font-bold mt-6">My Profile</h1>
         {photo && (
@@ -180,9 +178,10 @@ const Profile = () => {
                   key={listing.id}
                   id={listing.id}
                   listing={listing.data}
+                  
+
                   onDelete={() => onDelete(listing.id)}
                   onEdit={() => onEdit(listing.id)}
-                 
                 />
               ))}
             </ul>

@@ -25,7 +25,7 @@ const Header = () => {
     } else return false;
   };
   return (
-    <div className="bg-white shadow-md border-b sticky top-0 z-40 ">
+    <div className="bg-white shadow-md border-b sticky top-0 z-50 ">
       <header className="flex justify-between items-center px-4 max-w-6xl mx-auto">
         <div>
           <img

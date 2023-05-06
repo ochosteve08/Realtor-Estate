@@ -74,7 +74,6 @@ const Profile = () => {
         orderBy("timestamp", "desc")
       );
       const querySnap = await getDocs(q);
-      console.log(querySnap);
 
       let listing = [];
       querySnap.forEach((doc) => {
@@ -87,8 +86,6 @@ const Profile = () => {
 
     fetchUserListing();
   }, [auth.currentUser.uid]);
-
-  console.log(listings)
 
   const onDelete = async (listingId) => {
     if (window.confirm(" Are you sure you want to delete?")) {

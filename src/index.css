@@ -17,3 +17,7 @@ body{
   background: red;
 
 }
+
+html::-webkit-scrollbar { width: 0 !important };
+html { overflow: -moz-scrollbars-none; }
+html { -ms-overflow-style: none; }

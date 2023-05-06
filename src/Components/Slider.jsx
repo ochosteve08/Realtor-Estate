@@ -20,7 +20,7 @@ const Slider = () => {
 
   useEffect(() => {
     const fetchListings = async () => {
-      //   setLoading(true);
+     
       const listingRef = collection(db, "listings");
       const q = query(listingRef, orderBy("timestamp", "desc"), limit(5));
       const querySnap = await getDocs(q);

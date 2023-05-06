@@ -103,7 +103,7 @@ const Listing = () => {
           <div className="bg-white flex  items-center justify-center my-6 space-x-3  py-3 ">
             {listing?.imageUrls.map((image, index) => (
               <img
-                className="w-[15%] rounded-sm shadow-lg"
+                className="w-[15%] rounded-sm shadow-lg h-[100px]"
                 key={index}
                 src={image}
                 loading="lazy"

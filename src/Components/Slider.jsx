@@ -20,7 +20,6 @@ const Slider = () => {
 
   useEffect(() => {
     const fetchListings = async () => {
-     
       const listingRef = collection(db, "listings");
       const q = query(listingRef, orderBy("timestamp", "desc"), limit(5));
       const querySnap = await getDocs(q);
@@ -54,9 +53,9 @@ const Slider = () => {
             navigation
             pagination={{ type: "progressbar" }}
             effect="fade"
-            modules={EffectFade}
+            modules={[EffectFade]}
             autoplay={{ delay: 3000 }}
-           >
+          >
             {listings.map(({ data, id }) => (
               <SwiperSlide
                 key={id}
@@ -70,7 +69,7 @@ const Slider = () => {
                     backgroundSize: "cover",
                   }}
                 ></div>
-               
+
                 <p className="absolute left-2 top-3 z-50  bg-[#0077b6] px-6 py-2 rounded rounded-br-full text-white text-xs uppercase font-semibold shadow-lg">
                   {data.name}
                 </p>
@@ -82,11 +81,11 @@ const Slider = () => {
                   {data.type}
                 </p>
                 <p className=" bg-[#d90429] absolute left-2  bottom-[5%]  px-6 py-2 rounded-tr-full z-50 text-white text-xs uppercase font-semibold">
-                  $
+                  ₦
                   {data.regular
                     .toString()
                     .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                  {data.type === "rent" && " /month"}
+                  {data.type === "rent" && " /year"}
                 </p>
               </SwiperSlide>
             ))}

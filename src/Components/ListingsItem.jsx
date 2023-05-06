@@ -17,45 +17,30 @@ import "swiper/css/bundle";
 const ListingsItem = ({ id, listing, onEdit, onDelete }) => {
   const date = new Date(listing.timestamp.toDate());
   SwiperCore.use([Autoplay, Navigation, Pagination]);
-  console.log(Array.isArray(listing.imageUrls));
 
   return (
     <li className="bg-white relative flex w-auto flex-col justify-between items-center shadow-md hover:shadow-lg rounded-lg my-6 overflow-hidden transition-shadow duration-150  mx-4">
-      {/* <img
-          className="h-[170px] w-full object-cover hover:scale-105 transition-scale duration-150 ease-in-out"
-          src={listing.imageUrls[0]}
-          loading="lazy"
-          alt=""
-        /> */}
-      <Swiper
-        slidesPerView={1}
-        // navigation
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log("slide change")}
-        // pagination={{ type: "progressbar" }}
-        // effect="fade"
-        // modules={EffectFade}
-        autoplay={{ delay: 3000 }}
-      >
-        {listing.imageUrls.map((url) => (
-          <SwiperSlide>
-            {/* <div
-                className="relative w-full overflow-hidden  h-[170px] "
-                style={{
-                  background: `url(${url[0]}) center no-repeat`,
-                  backgroundSize: "cover",
-                }}
-              ></div>  */}
-            <img
-              className=" overflow-hidden w-[550px] md:w-[600px]  h-[170px] object-cover  hover:scale-105 transition-scale duration-150 ease-in-out "
-              src={url}
-              alt="pics"
-              loading="lazy"
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
       <Link className="contents" to={`/category/${listing.type}/${id}`}>
+        <Swiper
+          slidesPerView={1}
+          // navigation
+          // pagination={{ type: "progressbar" }}
+          // effect="fade"
+          // modules={[EffectFade]}
+          autoplay={{ delay: 3000 }}
+        >
+          {listing.imageUrls.map((url, index) => (
+            <SwiperSlide key={index}>
+              <img
+                className=" overflow-hidden w-[550px] md:w-[600px]  h-[170px] object-cover  hover:scale-105 transition-scale duration-150 ease-in-out "
+                src={url}
+                alt="pics"
+                loading="lazy"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
         <div className="absolute left-2 top-2 z-40  bg-[#0077b6] px-2 py-1 rounded-md text-white text-xs uppercase font-semibold">
           {moment(date).fromNow()}
         </div>
@@ -80,16 +65,16 @@ const ListingsItem = ({ id, listing, onEdit, onDelete }) => {
           <p className="font-semibold  text-xl">{listing.name}</p>
           <div className="flex space-x-3 text-[#0096c7] my-2 font-semibold">
             <p>
-              $
+              ₦
               {listing.regular.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-              {listing.type === "rent" && " /month"}
+              {listing.type === "rent" && " /year"}
             </p>
             {listing.offer && (
               <p>
-                <span className="font-semibold text-black bg-green-400 px-2 py-[2px] rounded-md">
+                <span className="font-semibold text-black bg-green-400 px-1 py-[2px] rounded-md mr-1">
                   discount:
                 </span>
-                $
+                ₦
                 {listing.discount
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}

@@ -56,8 +56,8 @@ const Listing = () => {
 
   // Create a LatLng object from the float values
   const position = [latitude, longitude];
-  
-  return (   
+
+  return (
     <main>
       {listing && (
         <>
@@ -66,7 +66,7 @@ const Listing = () => {
             navigation
             pagination={{ type: "progressbar" }}
             effect="fade"
-            modules={EffectFade}
+            modules={[EffectFade]}
             autoplay={{ delay: 3000 }}
           >
             {listing?.imageUrls.map((url, index) => (
@@ -84,7 +84,7 @@ const Listing = () => {
             ))}
           </Swiper>
           <div
-            className="fixed top-[20%] right-[5%] z-50 bg-white p-4 rounded-full cursor-pointer border-2 border-gray-400 "
+            className="fixed top-[15%] right-[5%] z-50 bg-white p-4 rounded-full cursor-pointer border-2 border-gray-400 "
             onClick={() => {
               navigator.clipboard.writeText(window.location.href);
               setShareLinkCopied(true);
@@ -96,14 +96,14 @@ const Listing = () => {
             <FaShare className="text-lg text-slate-500" />
           </div>
           {shareLinkCopied && (
-            <div className="fixed top-[30%] right-[10%] z-50 bg-white px-4 py-2 rounded-full font-semibold border-2 border-gray-400 ">
+            <div className="fixed top-[28%] right-[10%] z-50 bg-white px-4 py-2 rounded-full font-semibold border-2 border-gray-400 ">
               Link Copied!
             </div>
           )}
           <div className="bg-white flex  items-center justify-center my-6 space-x-3  py-3 ">
             {listing?.imageUrls.map((image, index) => (
               <img
-                className="w-[15%] rounded-sm shadow-lg h-[100px]"
+                className="w-[15%] md:w-[10%] rounded-sm shadow-lg h-[70px] lg:h-[120px]"
                 key={index}
                 src={image}
                 loading="lazy"
@@ -113,11 +113,11 @@ const Listing = () => {
           <div className=" bg-white md:max-w-6xl  m-4 lg:mx-auto flex flex-col md:flex-row p-4 shadow-lg space-y-5 md:space-x-5 md:space-y-0 rounded-lg ">
             <div className="h-auto  w-full ">
               <h3 className=" text-2xl font-bold  text-blue-900 ">
-                {listing?.name} - $
+                {listing?.name} - ₦
                 {listing?.regular
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                {listing?.type === "rent" ? "/month" : ""}
+                {listing?.type === "rent" ? "/year" : ""}
               </h3>
               <div className="flex items-center space-x-2 mt-4 mb-3 font-semibold">
                 <MdLocationOn className="h-6 w-6 text-green-600" />
@@ -131,7 +131,7 @@ const Listing = () => {
                 </p>
                 {listing?.offer && (
                   <p className="bg-green-600 w-full max-w-[200px] text-center p-1 rounded-md shadow-md">
-                    discount: ${listing?.discount}
+                    discount: ₦{listing?.discount}
                   </p>
                 )}
               </div>

@@ -19,7 +19,7 @@ const ListingsItem = ({ id, listing, onEdit, onDelete }) => {
   SwiperCore.use([Autoplay, Navigation, Pagination]);
 
   return (
-    <li className="bg-white relative flex w-auto flex-col justify-between items-center shadow-md hover:shadow-lg rounded-lg my-6 overflow-hidden transition-shadow duration-150  mx-4">
+    <li className="bg-white relative flex w-auto flex-col justify-between items-center shadow-md hover:shadow-lg rounded-lg my-3 overflow-hidden transition-shadow duration-150  mx-4">
       <Link className="contents" to={`/category/${listing.type}/${id}`}>
         <Swiper
           slidesPerView={1}
@@ -52,18 +52,18 @@ const ListingsItem = ({ id, listing, onEdit, onDelete }) => {
             </p>
           </div>
           <p
-            className={`absolute left-2 z-40 top-[48%]  px-2 py-1 rounded-md text-white text-xs uppercase font-semibold  ${
+            className={`absolute left-2 z-40 top-[50%]  px-2 py-1 rounded-md text-white text-xs uppercase font-semibold  ${
               listing.type === "rent" ? " bg-[#d90429]" : " bg-green-600"
             }`}
           >
             {listing.type}
           </p>
-          <div className="flex absolute z-40 bg-white right-2 top-[48%] items-center rounded-sm px-1">
+          <div className="flex absolute z-40 bg-white right-2 top-[50%] items-center rounded-sm px-1">
             <MdPhotoCamera className="" />
             <p className="text-sm">{listing.imageUrls.length}</p>
           </div>
           <p className="font-semibold  text-xl">{listing.name}</p>
-          <div className="flex space-x-3 text-[#0096c7] my-2 font-semibold">
+          <div className="flex space-x-3 text-[#0096c7] my-1 font-semibold">
             <p>
               ₦
               {listing.regular.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}

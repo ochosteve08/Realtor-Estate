@@ -76,17 +76,15 @@ const Home = () => {
           limit(4)
         );
         const querySnap = await getDocs(q);
-        console.log(querySnap);
+       
         let listing = [];
         querySnap.forEach((doc) => {
           return listing.push({ id: doc.id, data: doc.data() });
         });
         if (listing && listing.length > 0) {
           setRentListings(listing);
-          console.log(listing);
          
         }
-         console.log(rentListings);
       } catch (error) {
         console.log(error);
       }
@@ -113,7 +111,7 @@ const Home = () => {
         });
 
         setSaleListings(listing);
-        // console.log(listing);
+       
       } catch (error) {
         console.log(error);
       }

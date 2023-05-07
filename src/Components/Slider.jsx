@@ -51,7 +51,6 @@ const Slider = () => {
           <Swiper
 
             slidesPerView={1}
-            navigation
             pagination={{clickable: true}}
             effect="fade"
             modules={[EffectFade]}
@@ -71,22 +70,22 @@ const Slider = () => {
                   }}
                 ></div>
 
-                <p className="absolute left-2 top-3 z-50  bg-[#0077b6] px-6 py-2 rounded rounded-br-full text-white text-xs uppercase font-semibold shadow-lg">
+                <p className="absolute left-2 top-3 z-50  bg-[#0077b6] px-4 py-2 rounded rounded-br-full rounded-tl-full text-white text-xs uppercase font-medium shadow-lg truncate">
                   {data.name}
                 </p>
                 <p
-                  className={`absolute right-2  top-[5%]  px-6 py-2 rounded-bl-full z-50 text-white text-xs uppercase font-semibold  ${
+                  className={`absolute right-2  top-[5%]  px-6 py-2 rounded rounded-bl-full rounded-tr-full  z-50 text-white text-xs uppercase font-semibold  ${
                     data.type === "rent" ? " bg-[#d90429]" : " bg-green-600"
                   }`}
                 >
                   {data.type}
                 </p>
-                <p className=" bg-[#d90429] absolute left-2  bottom-[5%]  px-6 py-2 rounded-tr-full z-50 text-white text-xs uppercase font-semibold">
+                <p className=" bg-[#d90429] absolute left-2  bottom-[5%]  px-6 py-2 rounded-tr-full rounded-bl-full z-50 text-white text-xs uppercase font-medium">
                   ₦
                   {data.regular
                     .toString()
                     .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                  {data.type === "rent" && " /year"}
+                  {/* {data.type === "rent" && "/year"} */}
                 </p>
               </SwiperSlide>
             ))}

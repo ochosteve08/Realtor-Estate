@@ -12,7 +12,7 @@ body{
 
 }
 
-.swiper-pagination-progressbar .swiper-pagination-progressbar-fill .swiper-pagination-clickable-fill{
+.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
   background: red;
 };
 

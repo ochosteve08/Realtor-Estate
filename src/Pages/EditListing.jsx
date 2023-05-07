@@ -511,7 +511,7 @@ const EditListing = () => {
                 required
                 className="w-1/3 py-2 px-4 text-xl text-center text-gray-700 bg-white border border-gray-400 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600"
               />
-              {type === "rent" ? <p>$ / Month</p> : <p>$</p>}
+              {type === "rent" ? <p> ₦ / Year</p> : <p> ₦</p>}
             </div>
           </div>
 
@@ -533,7 +533,7 @@ const EditListing = () => {
                   required
                   className="w-1/3 py-2 px-4 text-xl text-center text-gray-700 bg-white border border-gray-400 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600"
                 />
-                {type === "rent" ? <p>$ / Month</p> : <p>$</p>}
+                {type === "rent" ? <p> ₦ / Year</p> : <p> ₦</p>}
               </div>
             </div>
           )}

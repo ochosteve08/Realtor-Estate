@@ -19,7 +19,7 @@ const ListingsItem = ({ id, listing, onEdit, onDelete }) => {
   SwiperCore.use([Autoplay, Navigation, Pagination]);
 
   return (
-    <li className="bg-white relative flex w-auto flex-col justify-between items-center shadow-md hover:shadow-lg rounded-lg my-3 overflow-hidden transition-shadow duration-150  mx-4">
+    <li className="bg-white relative flex w-auto flex-col justify-between items-center shadow-md hover:shadow-lg rounded-lg my-4 sm:mx-4  overflow-hidden transition-shadow duration-150   ">
       <Link className="contents" to={`/category/${listing.type}/${id}`}>
         <Swiper
           slidesPerView={1}
@@ -32,7 +32,7 @@ const ListingsItem = ({ id, listing, onEdit, onDelete }) => {
           {listing.imageUrls.map((url, index) => (
             <SwiperSlide key={index}>
               <img
-                className=" overflow-hidden w-[550px] md:w-[600px]  h-[170px] object-cover  hover:scale-105 transition-scale duration-150 ease-in-out "
+                className=" overflow-hidden w-[450px] xs:w-[620px]   sm:w-[600px]  h-[170px] object-cover  hover:scale-105 transition-scale duration-150 ease-in-out "
                 src={url}
                 alt="pics"
                 loading="lazy"
@@ -71,7 +71,7 @@ const ListingsItem = ({ id, listing, onEdit, onDelete }) => {
             </p>
             {listing.offer && (
               <p>
-                <span className="font-semibold text-black bg-green-400 px-1 py-[2px] rounded-md mr-1">
+                <span className="font-semibold text-black bg-green-300 px-1 py-[2px] rounded-md mr-1">
                   discount:
                 </span>
                 ₦

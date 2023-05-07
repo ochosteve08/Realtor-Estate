@@ -12,10 +12,16 @@ body{
 
 }
 
-.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
-
+.swiper-pagination-progressbar .swiper-pagination-progressbar-fill .swiper-pagination-clickable-fill{
   background: red;
+};
 
+.swiper-pagination-clickable {
+  background: red;
+}
+
+.swiper-pagination-bullet-active {
+  background: red;
 }
 
 html::-webkit-scrollbar { width: 0 !important };

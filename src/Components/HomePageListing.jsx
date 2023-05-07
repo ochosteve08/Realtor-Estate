@@ -10,7 +10,7 @@ const HomePageListing = ({listings,title, wordLink, link}) => {
       <div>
         <h2 className="font-semibold text-2xl mt-6">{title}</h2>
         <Link to={link}>
-          <p className=" text-blue-600 hover:text-blue-700 focus:text-blue-700 transition delay-150 ease-in-out">
+          <p className="inline text-blue-600 hover:text-blue-700 focus:text-blue-700 transition delay-150 ease-in-out">
            {wordLink}
           </p>
         </Link>

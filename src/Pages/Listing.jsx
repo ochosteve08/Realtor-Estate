@@ -103,14 +103,14 @@ const Listing = () => {
           <div className="bg-white flex  items-center justify-center my-6 space-x-3  py-3 ">
             {listing?.imageUrls.map((image, index) => (
               <img
-                className="w-[15%] md:w-[10%] rounded-sm shadow-lg h-[70px] lg:h-[120px]"
+                className="w-[50px] h-[40px]   lg:w-[5%] lg:h-[60px] rounded-sm shadow-lg  "
                 key={index}
                 src={image}
                 loading="lazy"
               />
             ))}
           </div>
-          <div className=" bg-white md:max-w-6xl  m-4 lg:mx-auto flex flex-col md:flex-row p-4 shadow-lg space-y-5 md:space-x-5 md:space-y-0 rounded-lg ">
+          <div className=" bg-white  flex flex-col md:flex-row mx-4 p-4 md:max-w-6xl   lg:mx-auto   shadow-lg space-y-5 md:space-x-5 md:space-y-0 rounded-lg ">
             <div className="h-auto  w-full ">
               <h3 className=" text-2xl font-bold  text-blue-900 ">
                 {listing?.name} - ₦

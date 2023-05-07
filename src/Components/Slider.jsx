@@ -49,9 +49,10 @@ const Slider = () => {
       {listings && (
         <>
           <Swiper
+
             slidesPerView={1}
             navigation
-            pagination={{ type: "progressbar" }}
+            pagination={{clickable: true}}
             effect="fade"
             modules={[EffectFade]}
             autoplay={{ delay: 3000 }}

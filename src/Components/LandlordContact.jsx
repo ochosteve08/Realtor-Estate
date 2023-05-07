@@ -1,7 +1,7 @@
 import { doc, getDoc } from "firebase/firestore";
 import React from "react";
 import { useEffect, useState } from "react";
-import { auth, db } from "../firebase";
+import {  db } from "../firebase";
 import { toast } from "react-toastify";
 
 const LandlordContact = ({ listing }) => {

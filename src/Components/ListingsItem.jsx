@@ -41,7 +41,7 @@ const ListingsItem = ({ id, listing, onEdit, onDelete }) => {
           ))}
         </Swiper>
 
-        <div className="absolute left-2 top-2 z-40  bg-[#0077b6] px-2 py-1 rounded-md text-white text-xs uppercase font-semibold">
+        <div className="absolute left-2 top-2 z-40  bg-[#0077b6]  rounded-md  px-4 py-2  rounded-br-full rounded-tl-full text-white text-xs uppercase font-semibold">
           {moment(date).fromNow()}
         </div>
         <div className="w-full p-[10px]">
@@ -52,7 +52,7 @@ const ListingsItem = ({ id, listing, onEdit, onDelete }) => {
             </p>
           </div>
           <p
-            className={`absolute left-2 z-40 top-[50%]  px-2 py-1 rounded-md text-white text-xs uppercase font-semibold  ${
+            className={`absolute left-2 z-40 top-[49%]  px-3 py-1 rounded rounded-bl-full rounded-tr-full text-white text-xs uppercase font-semibold  ${
               listing.type === "rent" ? " bg-[#d90429]" : " bg-green-600"
             }`}
           >
@@ -96,7 +96,7 @@ const ListingsItem = ({ id, listing, onEdit, onDelete }) => {
       </Link>
       {onEdit && (
         <MdEdit
-          className="absolute text-black bottom-2 right-7 h-4 cursor-pointer"
+          className="absolute text-black bottom-2 right-9 h-4 cursor-pointer"
           onClick={() => onEdit(listing.id)}
         />
       )}

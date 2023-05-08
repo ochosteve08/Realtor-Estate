@@ -10,7 +10,12 @@ import {
 } from "firebase/storage";
 import { auth, db } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  serverTimestamp,
+  setDoc,
+} from "firebase/firestore";
 import { useNavigate } from "react-router";
 
 const CreateListing = () => {
@@ -52,13 +57,12 @@ const CreateListing = () => {
   } = formData;
 
   const onChangeLocation = async (event) => {
-    
     const { value } = event.target;
     const floatValue = parseFloat(value);
-     let formattedValue = "";
-      if (!isNaN(floatValue)) {
-        formattedValue = floatValue.toFixed(4); // Format the value to 4 decimal places
-      }
+    let formattedValue = "";
+    if (!isNaN(floatValue)) {
+      formattedValue = floatValue.toFixed(4); // Format the value to 4 decimal places
+    }
 
     if (!event.target.files) {
       setFormData((prevState) => ({
@@ -96,6 +100,9 @@ const CreateListing = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+    console.log(auth.currentUser);
+    console.log(auth.currentUser.uid);
+
     setLoading(true);
 
     if (+discount > +regular) {
@@ -180,6 +187,7 @@ const CreateListing = () => {
       [...images].map((image) => storeImage(image))
     ).catch((error) => {
       setLoading(false);
+
       toast.error("images not uploaded");
       return;
     });
@@ -195,12 +203,14 @@ const CreateListing = () => {
     !formDataCopy.offer && delete formDataCopy.discount;
     delete formDataCopy.latitude;
     delete formDataCopy.longitude;
-
+    
     const docRef = await addDoc(collection(db, "listings"), formDataCopy);
-    console.log(docRef.id);
+   
     setLoading(false);
     toast.success("listing added successfully");
     navigate(`/category/${formDataCopy.type}/${docRef.id}`);
+
+   
   };
 
   if (loading) {

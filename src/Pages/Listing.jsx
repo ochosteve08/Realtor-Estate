@@ -110,8 +110,8 @@ const Listing = () => {
               />
             ))}
           </div>
-          <div className=" bg-white  flex flex-col md:flex-row mx-4 p-4 md:max-w-6xl   lg:mx-auto   shadow-lg space-y-5 md:space-x-5 md:space-y-0 rounded-lg ">
-            <div className="h-auto  w-full ">
+          <div className=" bg-white  flex flex-col md:flex-row mx-4 p-4 md:max-w-6xl mb-8  lg:mx-auto   shadow-lg space-y-5 md:space-x-5 md:space-y-0 rounded-lg ">
+            <div className="h-auto md:h-[300px] w-full ">
               <h3 className=" text-2xl font-bold  text-blue-900 ">
                 {listing?.name} - ₦
                 {listing?.regular

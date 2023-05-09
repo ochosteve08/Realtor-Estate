@@ -19,7 +19,7 @@ const ListingsItem = ({ id, listing, onEdit, onDelete }) => {
   SwiperCore.use([Autoplay, Navigation, Pagination]);
 
   return (
-    <li className="bg-white relative flex w-auto flex-col justify-between items-center shadow-md hover:shadow-lg rounded-lg my-4 sm:mx-4  overflow-hidden transition-shadow duration-150   ">
+    <li className="bg-white  relative flex  flex-col justify-between items-center shadow-md hover:shadow-lg rounded-lg my-4  sm:mx-[10px]  overflow-hidden transition-shadow duration-150   ">
       <Link className="contents" to={`/category/${listing.type}/${id}`}>
         <Swiper
           slidesPerView={1}
@@ -69,7 +69,7 @@ const ListingsItem = ({ id, listing, onEdit, onDelete }) => {
               {listing.regular.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               {listing.type === "rent" && " /year"}
             </p>
-            {listing.offer && (
+            {/* {listing.offer && (
               <p>
                 <span className="font-semibold text-black bg-green-300 px-1 py-[2px] rounded-md mr-1">
                   discount:
@@ -79,7 +79,7 @@ const ListingsItem = ({ id, listing, onEdit, onDelete }) => {
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               </p>
-            )}
+            )} */}
           </div>
           <div className="flex items-center space-x-3 font-bold text-xs ">
             <div>

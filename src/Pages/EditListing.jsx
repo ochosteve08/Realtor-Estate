@@ -148,7 +148,7 @@ const EditListing = () => {
       );
 
       const data = await response.json();
-      console.log(data);
+     
 
       geoLocation.lat = data.results[0]?.geometry.location.lat ?? 0;
       geoLocation.lng = data.results[0]?.geometry.location.lng ?? 0;
@@ -165,7 +165,7 @@ const EditListing = () => {
       geoLocation.lng = longitude;
     }
 
-    console.log(geoLocation);
+    
 
     const storeImage = async (image) => {
       return new Promise((resolve, reject) => {

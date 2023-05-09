@@ -122,7 +122,7 @@ const Home = () => {
   return (
     <main>
       <Slider />
-      <div className="max-w-6xl space-y-6  mx-auto px-4 ">
+      <div className="max-w-6xl space-y-6  mx-auto pt-4 px-4 ">
         <div>
           {offerListings && offerListings.length > 0 && (
             <HomePageListing

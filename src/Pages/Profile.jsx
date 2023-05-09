@@ -120,7 +120,7 @@ const Profile = () => {
               type="text"
               id="name"
               value={name}
-              disabled={(prevState)=> !prevState}
+              disabled={!changeDetail}
               onChange={onChange}
             />
             <input
